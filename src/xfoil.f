@@ -38,15 +38,19 @@ C
       WRITE(*,1005) VERSION
  1005 FORMAT(
      &  /' ==================================================='
-     &  /'  XFOILVG Version 2.1 (23-11-2017)'
+     &  /'  XFOILVG Version 2.2 (23-11-2017)'
      &  /'  Built on XFOIL Version', F5.2
      &  /'  Copyright (C) 2000   Mark Drela, Harold Youngren'
+     & //'  This software comes with ABSOLUTELY NO WARRANTY,'
+     &  /'  subject to the GNU General Public License.'
      & //'  XFOILVG incorporates vortex generators' 
      &  /'  using a source term technique, similar to that'
      &  /'  by Kerho and Kramer <AIAA 2003-211>'
      & //'  Modified by Delphine De Tavernier,'
      &  /'  Daniel Baldacchino and Carlos Ferreira'
      &  /'  Contact: d.a.m.detavernier@tudelft.nl'
+     & //'  Code clean up & CMake build system by'
+     &  /'  Pablo Benito Cia (pbenito@cener.com)'
      &  /' ===================================================')
 C
       CALL INIT
