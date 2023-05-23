@@ -38,7 +38,13 @@ endif()
 include(CTest)
 
 if(CMAKE_Fortran_COMPILER_ID STREQUAL GNU)
-  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -std=legacy")
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -std=legacy")  
+endif()
+
+if(WIN32)
+  set(CMAKE_EXE_LINKER_FLAGS "-static")
+else()
+  set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libgfortran")
 endif()
 
 option(DOUBLE_PRECISION
@@ -52,7 +58,7 @@ if(DOUBLE_PRECISION)
       set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -real-size 64")
     endif()
   elseif(CMAKE_Fortran_COMPILER_ID STREQUAL GNU)
-    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fdefault-real-8")
+    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fdefault-real-8")    
   endif()
 endif()
 

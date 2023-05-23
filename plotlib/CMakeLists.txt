@@ -38,8 +38,12 @@ if(3D_VIEW_ROUTINES)
 endif()
 
 if(WIN32)
-  set(W32WIN_SRCS win32/W32win.c win32/rgbtbl.h win32/Xdefs.h)
+  set(W32WIN_SRCS win32/W32win2.c win32/rgbtbl.h win32/Xdefs.h)
   add_library(W32win OBJECT ${W32WIN_SRCS})
+  if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
+	  target_compile_definitions(W32win PRIVATE UNDERSCORE)
+  endif()
+
   set(PLT_SRCS ${PLT_SRCS} $<TARGET_OBJECTS:W32win>)
 else()
   find_package(X11 REQUIRED)
@@ -59,8 +63,11 @@ set(PLT_VERSION ${PLT_VERSION_MAJOR}.${PLT_VERSION_MINOR})
 set_target_properties(plt PROPERTIES VERSION ${PLT_VERSION})
 
 if(NOT WIN32)
-  target_link_libraries(plt PUBLIC ${X11_LIBRARIES})
+  target_link_libraries(plt PUBLIC ${X11_LIBRARIES})  
+else()
+  target_link_libraries(plt PUBLIC gdi32)
 endif()
+
 
 add_subdirectory(examples)
 add_subdirectory(sym)

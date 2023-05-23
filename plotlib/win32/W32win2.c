@@ -406,7 +406,7 @@ gwxWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         return 0;
 
     case WM_PAINT:
-        printf("WM_PAINT\n"); 
+        //printf("WM_PAINT\n"); 
         /*
          *  Validate the region even if there are no DisplayFunc.
          *  Otherwise, USER will not stop sending WM_PAINT messages.
@@ -425,7 +425,7 @@ gwxWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         return 0;
 
     case WM_ACTIVATE:
-        printf("WM_ACTIVATE\n"); 
+        //printf("WM_ACTIVATE\n"); 
         break;
 
     case WM_MOUSEMOVE:
