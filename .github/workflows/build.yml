@@ -15,7 +15,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            artifact_name: xfoil
+            asset_name: xfoil-linux-x86_64                   
+          - os: windows-latest
+            artifact_name: xfoil.exe
+            asset_name: xfoil-windows-x86_64
 
     steps:
     - uses: actions/checkout@v3
@@ -50,9 +56,10 @@ jobs:
 
     - name: Upload binaries to release
       if: ${{ github.event_name == 'release' && github.event.action == 'published' }}
-      uses: svenstaro/upload-release-action@2.4.0
+      uses: svenstaro/upload-release-action@2.6.0
       with:
-        file: ${{github.workspace}}/build/src/xfoil*
-        file_glob: true
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{github.workspace}}/build/src/${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
 
 
