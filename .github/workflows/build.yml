@@ -21,7 +21,7 @@ jobs:
             asset_name: xfoil-linux-x86_64                   
           - os: windows-latest
             artifact_name: xfoil.exe
-            asset_name: xfoil-windows-x86_64
+            asset_name: xfoil-windows-x86_64.exe
 
     steps:
     - uses: actions/checkout@v3
